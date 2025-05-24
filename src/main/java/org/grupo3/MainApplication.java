@@ -2,6 +2,8 @@ package org.grupo3;
 
 import org.grupo3.contexts.shared.infrastructure.ConnectionProvider;
 import org.grupo3.contexts.todoapp.task.domain.Task;
+import org.grupo3.contexts.todoapp.task.domain.TaskRepository;
+import org.grupo3.contexts.todoapp.task.infrastructure.MySQLTaskRepository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,9 +19,13 @@ public class MainApplication {
             System.out.println("Successfully connected to MySQL database.");
         }
 
-        Task task = Task.createWithoutId("Wash the dishes", false);
+        TaskRepository repository = new MySQLTaskRepository();
 
-        System.out.println(task);
+        Task taskWithoutId = Task.createWithoutId("Do the laundry", false);
+        System.out.println(taskWithoutId);
+
+        Task taskWithId = repository.save(taskWithoutId);
+        System.out.println(taskWithId);
     }
 
 }
