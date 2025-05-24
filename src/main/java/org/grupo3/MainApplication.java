@@ -1,6 +1,7 @@
 package org.grupo3;
 
 import org.grupo3.contexts.shared.infrastructure.ConnectionProvider;
+import org.grupo3.contexts.todoapp.task.application.TaskRegisterer;
 import org.grupo3.contexts.todoapp.task.domain.Task;
 import org.grupo3.contexts.todoapp.task.domain.TaskRepository;
 import org.grupo3.contexts.todoapp.task.infrastructure.MySQLTaskRepository;
@@ -21,10 +22,10 @@ public class MainApplication {
 
         TaskRepository repository = new MySQLTaskRepository();
 
-        Task taskWithoutId = Task.createWithoutId("Do the laundry", false);
-        System.out.println(taskWithoutId);
+        TaskRegisterer taskRegisterer = new TaskRegisterer(repository);
 
-        Task taskWithId = repository.save(taskWithoutId);
+        Task taskWithId = taskRegisterer.register("Do the laundry", false);
+
         System.out.println(taskWithId);
     }
 
