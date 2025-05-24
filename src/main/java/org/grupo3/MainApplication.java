@@ -1,6 +1,7 @@
 package org.grupo3;
 
 import org.grupo3.contexts.shared.infrastructure.ConnectionProvider;
+import org.grupo3.contexts.todoapp.task.domain.Task;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,6 +16,10 @@ public class MainApplication {
         if (!(connection == null)) {
             System.out.println("Successfully connected to MySQL database.");
         }
+
+        Task task = new Task(null, "Wash the dishes", false);
+
+        System.out.println(task);
     }
 
 }
