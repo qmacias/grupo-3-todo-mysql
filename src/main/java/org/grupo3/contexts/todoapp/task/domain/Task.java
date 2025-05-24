@@ -5,10 +5,18 @@ public class Task {
     private String name;
     private Boolean status;
 
-    public Task(Integer id, String name, Boolean status) {
+    private Task(Integer id, String name, Boolean status) {
         this.id = id;
         this.name = name;
         this.status = status;
+    }
+
+    public static Task createWithId(Integer id, String name, Boolean status) {
+        return new Task(id, name, status);
+    }
+
+    public static Task createWithoutId(String name, Boolean status) {
+        return new Task(null, name, status);
     }
 
     public Integer getId() {

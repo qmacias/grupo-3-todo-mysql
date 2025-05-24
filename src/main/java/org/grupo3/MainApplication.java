@@ -17,7 +17,7 @@ public class MainApplication {
             System.out.println("Successfully connected to MySQL database.");
         }
 
-        Task task = new Task(null, "Wash the dishes", false);
+        Task task = Task.createWithoutId("Wash the dishes", false);
 
         System.out.println(task);
     }
